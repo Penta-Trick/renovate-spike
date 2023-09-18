@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "config:js-lib"
+  ],
+  "semanticCommits": "enabled",
+  "regexManagers": [
+    {
+      "fileMatch": ["^\\.github\\/.+\\.ya?ml$"],
+      "matchStrings": ["#\\s*renovate:\\s*(dataSource=nodejs)?\\s*\\n\\s*node-version:\\s*(?<currentValue>.*)\\s"],
+      "depNameTemplate": "nodejs",
+      "versioningTemplate": "semver-coerced",
+      "datasourceTemplate": "custom.nodejs"
+    }
+  ],
+  "customDatasources": {
+    "chrome": {
+      "defaultRegistryUrlTemplate": "https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions",
+      "transformTemplates": [
+        "{ \"releases\": $.versions\n }"
+      ]
+    },
+    "nodejs": {
+      "defaultRegistryUrlTemplate": "https://nodejs.org/download/release/index.json",
+      "transformTemplates": [
+        "{ \"releases\": $ }"
+      ]
+    }
+  }
+}

@@ -16,6 +16,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
+          # renovate: dataSource=nodejs
           node-version: '18.16.1'
 
       - name: Check Node.js version
